@@ -1,0 +1,14 @@
+.app-container {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #55b9f3;
+  flex-direction: column;
+}
+
+.timezones-list {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-column-gap: 50px;
+}

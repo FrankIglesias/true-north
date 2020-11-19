@@ -1,13 +1,19 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import debounce from 'debounce';
+
 import { getTimezoneNames } from '../services/timezone';
+
+import styles from './SearchBar.module.css';
 
 export default function SearchBar({ addTimezone }) {
   const [timezoneName, setTimezoneName] = useState('');
   const [autocompleteResults, setAutocompleteResults] = useState([]);
+  const [showOptions, setShowOptions] = useState(false);
+
   useEffect(() => {
     getTimezoneNames().then((response) => {
       setAutocompleteResults(response.data);
+      setShowOptions(true);
     });
   }, []);
 
@@ -16,26 +22,39 @@ export default function SearchBar({ addTimezone }) {
       debounce((value) => {
         getTimezoneNames(value).then((response) => {
           setAutocompleteResults(response.data);
+          setShowOptions(true);
         });
       }, 1000),
     []
   );
 
   return (
-    <div>
+    <div className={styles.searchContainer}>
       <input
         type='text'
+        className={styles.input}
         value={timezoneName}
         onChange={(e) => {
           setTimezoneName(e.target.value);
           searchTimezones(e.target.value);
         }}
       />
-      {autocompleteResults.map((result) => (
-        <button key={result} onClick={() => addTimezone(result)}>
-          {result}
-        </button>
-      ))}
+      {showOptions && (
+        <div className={styles.optionContainer}>
+          {autocompleteResults.map((result) => (
+            <button
+              className={styles.option}
+              key={result}
+              onClick={() => {
+                setShowOptions(false);
+                addTimezone(result);
+              }}
+            >
+              {result}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

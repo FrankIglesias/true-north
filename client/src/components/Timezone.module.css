@@ -1,0 +1,12 @@
+.timezone-container {
+  border-radius: 50px;
+  background: #55b9f3;
+  box-shadow: 20px 20px 13px #489dcf,
+    -20px -20px 13px #62d5ff;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
