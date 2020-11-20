@@ -15,6 +15,8 @@ To do that, open the `server_app` container and run
  node migrations/timezone-import.js
  ```
  This will fetch each timezone and persist it on the database database.
+
+ For time saving, migrations can be stopped any time and the database will have the timezones that were able to finalize persistance.
 ## Server
 The server runs with docker compose. So in order to run it you need to have it installed on your computer. [Instructions here](https://docs.docker.com/compose/install/)
 

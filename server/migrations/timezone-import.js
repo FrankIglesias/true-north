@@ -28,6 +28,7 @@ timezoneService.getTimezones().then(async (timezones) => {
       retries.push(element.timezone);
     }
   }
+
   for (let i = 0; i < 3; i++) {
     let auxRet = [];
     for (element of retries) {
@@ -40,6 +41,7 @@ timezoneService.getTimezones().then(async (timezones) => {
     }
     retries = auxRet;
   }
+
   const timezonesCount = await Timezone.estimatedDocumentCount();
   console.log('Timezones fetched: ', timezones.length);
   console.log('Timezones migrated: ',  timezonesCount);
