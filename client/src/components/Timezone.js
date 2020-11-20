@@ -3,7 +3,7 @@ import { getTimezone } from '../services/timezone';
 import moment from 'moment';
 import styles from './Timezone.module.scss';
 
-export default function Timezone({ timezoneName }) {
+export default function Timezone({ timezoneName, removeCurrent }) {
   const [timezone, setTimezone] = useState({});
 
   const updateTime = () =>
@@ -23,9 +23,10 @@ export default function Timezone({ timezoneName }) {
 
   return (
     <div className={styles.timezoneContainer}>
-      <p>{timezone.timezone}</p>
-      <p>{moment(timezone.datetime).format('MM/DD/YYYY')}</p>
-      <p>{moment(timezone.datetime).format('HH:mm:ss')}</p>
+      <button className={styles.removeCurrent} onClick={removeCurrent}>x</button>
+      <p className={styles.timezoneValues}>{timezoneName}</p>
+      <p className={styles.timezoneValues}>{moment(timezone.datetime).format('MM/DD/YYYY')}</p>
+      <p className={styles.timezoneValues}>{moment(timezone.datetime).format('HH:mm:ss')}</p>
     </div>
   );
 }

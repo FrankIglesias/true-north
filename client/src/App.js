@@ -14,7 +14,15 @@ function App() {
       />
       <div className={styles.timezonesList}>
         {selectedTimezones.map((timezone) => (
-          <Timezone key={timezone} timezoneName={timezone} />
+          <Timezone
+            key={timezone}
+            timezoneName={timezone}
+            removeCurrent={() =>
+              setSelectedTimezones(
+                selectedTimezones.filter((tz) => tz !== timezone)
+              )
+            }
+          />
         ))}
       </div>
     </div>

@@ -1,14 +1,18 @@
+@import 'scss/colors';
+
 .app-container {
   display: flex;
   align-items: center;
   width: 100vw;
   min-height: 100vh;
-  background-color: #55b9f3;
+  background-color: $black;
   flex-direction: column;
 }
 
 .timezones-list {
   display: grid;
-  grid-template-columns: 200px 200px 200px;
-  grid-column-gap: 50px;
+  width: 100%;
+  padding: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 30px;
 }
