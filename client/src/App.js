@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './App.module.css';
+import styles from './App.module.scss';
 import SearchBar from './components/SearchBar';
 import Timezone from './components/Timezone';
 

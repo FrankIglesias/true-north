@@ -3,7 +3,7 @@ import debounce from 'debounce';
 
 import { getTimezoneNames } from '../services/timezone';
 
-import styles from './SearchBar.module.css';
+import styles from './SearchBar.module.scss';
 
 export default function SearchBar({ addTimezone }) {
   const [timezoneName, setTimezoneName] = useState('');

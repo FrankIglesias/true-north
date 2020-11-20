@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getTimezone } from '../services/timezone';
 import moment from 'moment';
-import styles from './Timezone.module.css';
+import styles from './Timezone.module.scss';
 
 export default function Timezone({ timezoneName }) {
   const [timezone, setTimezone] = useState({});
