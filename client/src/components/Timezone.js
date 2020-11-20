@@ -26,10 +26,6 @@ export default function Timezone({ timezoneName, removeCurrent }) {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(updater);
-  }, [updater])
-
   if (!timezone) {
     return null;
   }
