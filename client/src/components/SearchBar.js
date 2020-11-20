@@ -32,7 +32,7 @@ export default function SearchBar({ addTimezone }) {
     <div className={styles.searchContainer}>
       <input
         type='text'
-        placeholder="Timezone name"
+        placeholder="Enter timezone name"
         className={styles.input}
         value={timezoneName}
         onChange={(e) => {

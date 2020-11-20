@@ -2,24 +2,25 @@ const timezoneService = require('../services/timezones');
 const moment = require('moment');
 const Timezone = require('../models/timezone');
 
-exports.getAllTimezones = (req, res) =>
-  Timezone.find({
-    ...(req.query.name ? { timezone: new RegExp(req.query.name, 'i') } : {}),
-  })
-    .limit(10)
-    .then((timezones) => {
-      res.send(timezones.map((timezone) => timezone.timezone));
+const interactor = process.env.NODE_APP_FETCH_MODE  === 'db' ? Timezone : timezoneService; 
+
+exports.getAllTimezones = (req, res) => {
+  interactor.getTimezones(req.query.name).then((timezones) => {
+    res.send(timezones.map((timezone) => timezone.timezone));
     });
+  }
 
 exports.getTimezone = (req, res) => {
-  Timezone.findOne({ timezone: req.params.name }).then((timezone) => {
+  interactor.getTimezone(req.params.name).then((timezone) => {
     if(!timezone) {
       res.status(404).send();
     }
     res.send({
-      ...timezone.toObject(),
+      ...timezone,
       datetime: moment().utc().utcOffset(timezone.utc_offset).format(),
     });
+  }).catch(e => {
+    res.status(404).send();
   });
 };
 

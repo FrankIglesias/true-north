@@ -22,4 +22,12 @@ const TimezoneSchema = new mongoose.Schema({
 
 const Timezone = mongoose.model('timezone', TimezoneSchema);
 
+Timezone.getTimezones = (name) =>
+  Timezone.find({
+    ...(name ? { timezone: new RegExp(name, 'i') } : {}),
+  }).limit(10);
+
+Timezone.getTimezone = (name) =>
+  Timezone.findOne({ timezone: name }).then((response) => response.toObject());
+
 module.exports = Timezone;
